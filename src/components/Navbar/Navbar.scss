@@ -1,0 +1,21 @@
+@import "../../style/base.scss";
+
+.navbar {
+  background-color: #253a46;
+  padding: 0 1em;
+  height: 50px;
+  display: flex;
+  align-items: center;
+
+  &__list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+
+  &__link {
+    color: white;
+    text-decoration: none;
+    padding: 0 4px;
+  }
+}
