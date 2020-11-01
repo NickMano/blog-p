@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Navbar from './Navbar/Navbar';
+import Navbar from './Navbar';
 import Users from './Users';
 
 const App = () => (
