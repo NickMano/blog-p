@@ -13,13 +13,13 @@ const usersReducer = (state = INITIAL_STATE, action) => {
         loading: false,
         error: '',
       };
-    case 'LOADING':
+    case 'LOADING_USERS':
       return {
         ...state,
         loading: true,
         error: '',
       };
-    case 'ERROR':
+    case 'ERROR_USERS':
       return {
         ...state,
         loading: false,

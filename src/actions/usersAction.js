@@ -1,6 +1,6 @@
 const getAllUsers = () => async (dispatch) => {
   dispatch({
-    type: 'LOADING',
+    type: 'LOADING_USERS',
   });
   try {
     const response = await fetch('https://jsonplaceholder.typicode.com/users');
@@ -12,7 +12,7 @@ const getAllUsers = () => async (dispatch) => {
     });
   } catch (error) {
     dispatch({
-      type: 'ERROR',
+      type: 'ERROR_USERS',
     });
   }
 };

@@ -1,6 +1,6 @@
 const getAllPosts = () => async (dispatch) => {
   dispatch({
-    type: 'LOADING',
+    type: 'LOADING_POSTS',
   });
   try {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts');
@@ -12,7 +12,7 @@ const getAllPosts = () => async (dispatch) => {
     });
   } catch (error) {
     dispatch({
-      type: 'ERROR',
+      type: 'ERROR_POSTS',
     });
   }
 };

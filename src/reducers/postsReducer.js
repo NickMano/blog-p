@@ -13,13 +13,13 @@ const postsReducer = (state = INITIAL_STATE, action) => {
         loading: false,
         error: '',
       };
-    case 'LOADING':
+    case 'LOADING_POSTS':
       return {
         ...state,
         loading: true,
         error: '',
       };
-    case 'ERROR':
+    case 'ERROR_POSTS':
       return {
         ...state,
         loading: false,
