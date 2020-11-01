@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import getAllUsers from '../actions/usersAction';
 
-const Users = () => {
+const Users = (props) => {
   const [users, setUsers] = useState([]);
 
-  useEffect(async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users');
+  useEffect(() => {
+    props.getAllUsers();
     const data = await response.json();
     setUsers(data);
   }, []);
@@ -35,3 +36,7 @@ const Users = () => {
 };
 
 export default Users;
+const mapStateToProps = (reducers) => reducers.usersReducer;
+const mapDispatchToProps = { getAllUsers };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users);
