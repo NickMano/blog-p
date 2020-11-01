@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Loading from './Loading/Loading';
-import getAllUsers from '../actions/usersAction';
-import Table from './Table';
+import Loading from '../../components/Loading/Loading';
+import getAllUsers from '../../actions/usersAction';
+import Table from '../../components/Table';
+import './Users.scss';
 
 const Users = (props) => {
-  const tableHeaders = ['Nombre', 'Correo', 'Dominio'];
+  const tableHeaders = ['Nombre', 'Dominio', ''];
   const { loading, users } = props;
 
   useEffect(() => {
@@ -19,8 +20,8 @@ const Users = (props) => {
     );
   }
   return (
-    <div className="margen">
-      <Table headers={tableHeaders} body={users} />
+    <div className="grid">
+      <Table cssClassName="tableUsers" headers={tableHeaders} body={users} />
     </div>
   );
 };
