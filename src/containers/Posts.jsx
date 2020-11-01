@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import getAllUsers from '../actions/usersAction';
+import getAllPosts from '../actions/postsAction';
 
 const Posts = (props) => {
   const { key } = useParams();
-  const { users } = props;
+  const { usersReducer, postsReducer } = props;
 
-  if (!users.length) { props.getAllUsers(); }
+  useEffect(() => {
+    if (!usersReducer.users.length) { props.getAllUsers(); }
+    if (!postsReducer.posts.length) { props.getAllPosts(); }
+  }, []);
 
   return (
     <>
@@ -22,11 +26,28 @@ const Posts = (props) => {
 };
 
 Posts.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.object).isRequired,
+  usersReducer: PropTypes.shape(
+    {
+      loading: PropTypes.bool,
+      error: PropTypes.string,
+      users: PropTypes.arrayOf(PropTypes.object),
+    },
+  ).isRequired,
+  postsReducer: PropTypes.shape(
+    {
+      loading: PropTypes.bool,
+      error: PropTypes.string,
+      posts: PropTypes.arrayOf(PropTypes.object),
+    },
+  ).isRequired,
   getAllUsers: PropTypes.func.isRequired,
+  getAllPosts: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (reducers) => reducers.usersReducer;
-const mapdispatchToProps = { getAllUsers };
+const mapStateToProps = ({ usersReducer, postsReducer }) => ({
+  usersReducer,
+  postsReducer,
+});
+const mapdispatchToProps = { getAllUsers, getAllPosts };
 
 export default connect(mapStateToProps, mapdispatchToProps)(Posts);
