@@ -1,4 +1,4 @@
-/* eslint-disable react/no-array-index-key */
+import React, { useEffect } from 'react';
 import React, { useState, useEffect } from 'react';
 
 const Users = () => {
