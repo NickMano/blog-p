@@ -5,8 +5,8 @@ $l: 1280px;
 $xl: 1440px;
 
 @mixin for-size($size) {
-  @if $size == xs {
-    @media (max-width: $s) {
+  @if $size == s {
+    @media (min-width: $s) {
       @content;
     }
   } @else if $size == m {
@@ -40,18 +40,18 @@ $xl: 1440px;
 }
 
 .grid {
-  margin: 0 16px;
+  margin: 2em 16px;
 
   @include for-size(m) {
-    margin: 0 32px;
+    margin: 2em 32px;
   }
 
   @include for-size(l) {
-    margin: 0 80px;
+    margin: 2em 80px;
   }
 
   @include for-size(xl) {
-    margin: 0 auto;
+    margin: 2em auto;
     max-width: 1280px;
   }
 }

@@ -8,4 +8,38 @@ $theme-font: "Muli", sans-serif;
 body {
   margin: 0;
   font-family: $theme-font;
+  background-color: #fafafa;
+}
+
+$box-shadow-light: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+.btn {
+  padding: 12px 1em;
+  margin: 1.2em 0;
+  min-width: 64px;
+  border-radius: 4px;
+  border-style: none;
+  font-weight: 700;
+  font-size: medium;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
+  background-color: $color-primary;
+
+  &--full-width {
+    width: 100%;
+  }
+}
+
+.h1-title {
+  margin: 1.2em 16px 0;
+
+  @include for-size(m) {
+    margin: 1.2em 32px 0;
+  }
+
+  @include for-size(l) {
+    margin: 1.2em 80px 0;
+  }
 }
