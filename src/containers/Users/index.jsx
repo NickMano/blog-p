@@ -3,26 +3,28 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Loading from '../../components/Loading/Loading';
 import getAllUsers from '../../actions/usersAction';
-import Table from '../../components/Table';
+import UserBadge from '../../components/UserBadge';
 import './Users.scss';
 
 const Users = (props) => {
-  const tableHeaders = ['Nombre', 'Dominio', ''];
   const { loading, users } = props;
 
   useEffect(() => {
     props.getAllUsers();
   }, []);
 
-  if (loading) {
-    return (
-      <Loading />
-    );
-  }
   return (
-    <div className="grid">
-      <Table cssClassName="tableUsers" headers={tableHeaders} body={users} />
-    </div>
+    <>
+      <h1 className="h1-title">Users</h1>
+      <div className="grid">
+        {loading && <Loading />}
+        {users.map((user) => (
+          <div className="users-list" key={user.id}>
+            <UserBadge user={user} />
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 

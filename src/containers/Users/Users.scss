@@ -4,3 +4,38 @@
   grid-column: 1/-1;
   text-align: left;
 }
+
+.users {
+  &-list {
+    grid-column: 1/-1;
+    margin-top: 2em;
+
+    @include for-size(m) {
+      &:nth-child(2n-1) {
+        grid-column: 1/7;
+      }
+
+      &:nth-child(2n) {
+        grid-column: 7/13;
+      }
+    }
+
+    @include for-size(l) {
+      &:nth-child(4n-3) {
+        grid-column: 1/4;
+      }
+
+      &:nth-child(4n-2) {
+        grid-column: 4/7;
+      }
+
+      &:nth-child(4n-1) {
+        grid-column: 7/10;
+      }
+
+      &:nth-child(4n) {
+        grid-column: 10/13;
+      }
+    }
+  }
+}
