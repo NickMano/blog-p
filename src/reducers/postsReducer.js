@@ -13,6 +13,13 @@ const postsReducer = (state = INITIAL_STATE, action) => {
         loading: false,
         error: '',
       };
+    case 'GET_POSTS_OF_USER':
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        posts: action.payload,
+      };
     case 'LOADING_POSTS':
       return {
         ...state,

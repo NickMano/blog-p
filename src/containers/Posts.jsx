@@ -3,15 +3,15 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import getAllUsers from '../actions/usersAction';
-import getAllPosts from '../actions/postsAction';
+import { getPostsOfUser } from '../actions/postsAction';
 
 const Posts = (props) => {
-  const { key } = useParams();
+  const { userId } = useParams();
   const { usersReducer, postsReducer } = props;
 
   useEffect(() => {
     if (!usersReducer.users.length) { props.getAllUsers(); }
-    if (!postsReducer.posts.length) { props.getAllPosts(); }
+    if (!postsReducer.posts.length) { props.getPostsOfUser(userId); }
   }, []);
 
   return (
@@ -19,7 +19,7 @@ const Posts = (props) => {
       <p>
         Es el post
         {' '}
-        {key}
+        {userId}
       </p>
     </>
   );
@@ -41,13 +41,13 @@ Posts.propTypes = {
     },
   ).isRequired,
   getAllUsers: PropTypes.func.isRequired,
-  getAllPosts: PropTypes.func.isRequired,
+  getPostsOfUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ usersReducer, postsReducer }) => ({
   usersReducer,
   postsReducer,
 });
-const mapdispatchToProps = { getAllUsers, getAllPosts };
+const mapdispatchToProps = { getAllUsers, getPostsOfUser };
 
 export default connect(mapStateToProps, mapdispatchToProps)(Posts);
