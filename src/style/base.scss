@@ -42,4 +42,9 @@ $box-shadow-light: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   @include for-size(l) {
     margin: 1.2em 80px 0;
   }
+
+  @include for-size(xl) {
+    margin: 1.2em auto;
+    max-width: 1280px;
+  }
 }
