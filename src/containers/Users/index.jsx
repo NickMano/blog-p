@@ -10,7 +10,7 @@ const Users = (props) => {
   const { loading, users } = props;
 
   useEffect(() => {
-    props.getAllUsers();
+    if (!users.length) { props.getAllUsers(); }
   }, []);
 
   return (
