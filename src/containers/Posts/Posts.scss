@@ -1,0 +1,12 @@
+@import "../../style/base.scss";
+
+.posts-list {
+  grid-column: 1/-1;
+  border-radius: 8px;
+  box-shadow: $box-shadow-light;
+  background-color: white;
+  overflow: hidden;
+  padding: 1.2em;
+  margin-bottom: 16px;
+  width: 100%;
+}

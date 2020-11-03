@@ -2,12 +2,15 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import getAllUsers from '../actions/usersAction';
-import { getPostsOfUser } from '../actions/postsAction';
+import getAllUsers from '../../actions/usersAction';
+import Loading from '../../components/Loading/Loading';
+import { getPostsOfUser } from '../../actions/postsAction';
+import './Posts.scss';
 
 const Posts = (props) => {
   const { userId } = useParams();
   const { usersReducer, postsReducer } = props;
+  const currentUser = usersReducer.users.find((user) => user.id === parseInt(userId, 10));
 
   useEffect(() => {
     if (!usersReducer.users.length) { props.getAllUsers(); }
@@ -16,11 +19,19 @@ const Posts = (props) => {
 
   return (
     <>
-      <p>
-        Es el post
-        {' '}
-        {userId}
-      </p>
+      <h1 className="h1-title">
+        {currentUser?.name}
+        &apos;s posts
+      </h1>
+      <div className="grid">
+        {(usersReducer.loading || postsReducer.loading) && <Loading />}
+        {postsReducer.posts.map((post) => (
+          <div className="posts-list" key={post.id}>
+            <h3>{post.title}</h3>
+            <p>{post.body}</p>
+          </div>
+        ))}
+      </div>
     </>
   );
 };
