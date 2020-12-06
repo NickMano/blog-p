@@ -14,7 +14,7 @@ const Posts = (props) => {
 
   useEffect(() => {
     if (!usersReducer.users.length) { props.getAllUsers(); }
-    if (!postsReducer.posts.length) { props.getPostsOfUser(userId); }
+    if (postsReducer.posts[0]?.userId !== parseInt(userId, 10)) { props.getPostsOfUser(userId); }
   }, []);
 
   return (
@@ -24,13 +24,20 @@ const Posts = (props) => {
         &apos;s posts
       </h1>
       <div className="grid">
-        {(usersReducer.loading || postsReducer.loading) && <Loading />}
-        {postsReducer.posts.map((post) => (
-          <div className="posts-list" key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.body}</p>
-          </div>
-        ))}
+        {
+          (
+            usersReducer.loading
+            || postsReducer.loading
+            || postsReducer.posts[0]?.userId !== parseInt(userId, 10)
+          )
+            ? <Loading />
+            : postsReducer.posts.map((post) => (
+              <div className="posts-list" key={post.id}>
+                <h3>{post.title}</h3>
+                <p>{post.body}</p>
+              </div>
+            ))
+        }
       </div>
     </>
   );
